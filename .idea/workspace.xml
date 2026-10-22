@@ -5,28 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5649200-c262-45d2-81a0-48320ba50233" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/CategoriaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/DTO/EditCategoriaDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/DTO/GetCategoriaDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Service/CategoriaService.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/dam/src/main/resources/test.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/DTO/CategoryRequestDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/Repository/CategoriaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Repository/CategoriaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/Repository/IngredienteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Repository/IngredienteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/Repository/RecetaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Repository/RecetaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/error/CategoriaNoEncontradaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/error/CategoriaNoEncontradaException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/error/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/error/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/error/IngredienteNoEncontradaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/error/IngredienteNoEncontradaException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/error/IngredienteYaAnadidoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/error/IngredienteYaAnadidoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/error/RecetaNoEncontradaException.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/error/RecetaNoEncontradaException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/error/TiempoInvalidoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/error/TiempoInvalidoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/modelos/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/modelos/Categoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/modelos/Dificultad.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/modelos/Dificultad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/modelos/Ingrediente.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/modelos/Ingrediente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/modelos/Receta.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/modelos/Receta.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
