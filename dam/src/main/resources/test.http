@@ -192,3 +192,49 @@ DELETE http://localhost:8080/api/v1/categorias/{{categoriaId}}
 
 ### Borrar receta (204)
 DELETE http://localhost:8080/api/v1/recetas/{{recetaId}}
+
+### ============ INGREDIENTES ============
+
+### Listar ingredientes (200)
+GET http://localhost:8080/api/v1/ingredientes
+
+### Crear ingrediente (201)
+POST http://localhost:8080/api/v1/ingredientes
+Content-Type: application/json
+
+{
+  "nombre": "Arroz bomba"
+}
+
+### Crear otro ingrediente (201)
+POST http://localhost:8080/api/v1/ingredientes
+Content-Type: application/json
+
+{
+  "nombre": "Azafrán"
+}
+
+### Nombre vacío (400)
+POST http://localhost:8080/api/v1/ingredientes
+Content-Type: application/json
+
+{
+  "nombre": ""
+}
+
+### Sin cuerpo de nombre (400)
+POST http://localhost:8080/api/v1/ingredientes
+Content-Type: application/json
+
+{}
+
+### Nombre duplicado (409)
+POST http://localhost:8080/api/v1/ingredientes
+Content-Type: application/json
+
+{
+  "nombre": "Arroz bomba"
+}
+
+### Listar de nuevo, deben salir 2 (200)
+GET http://localhost:8080/api/v1/ingredientes
