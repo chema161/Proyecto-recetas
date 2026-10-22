@@ -1,7 +1,7 @@
 package org.salesianostriana.dam.Controller;
 
-import org.salesianostriana.dam.DTO.EditCategoriaDto;
-import org.salesianostriana.dam.DTO.GetCategoriaDto;
+import org.salesianostriana.dam.Dto.EditCategoriaDto;
+import org.salesianostriana.dam.Dto.GetCategoriaDto;
 import org.salesianostriana.dam.Service.CategoriaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
