@@ -2,11 +2,13 @@ package org.salesianostriana.dam.Controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.salesianostriana.dam.Dto.AddIngredienteRecetaDto;
 import org.salesianostriana.dam.Dto.EditRecetaDto;
 import org.salesianostriana.dam.Dto.GetRecetaDetailDto;
 import org.salesianostriana.dam.Dto.GetRecetaListDto;
 import org.salesianostriana.dam.Service.RecetaService;
 import org.salesianostriana.dam.modelos.Receta;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -59,6 +61,14 @@ public class RecetaController {
         return ResponseEntity.noContent().build();
     }
 
+    @PostMapping("/{recetaId}/ingredientes")
+    public ResponseEntity<GetRecetaDetailDto> addIngrediente(
+            @PathVariable Long recetaId,
+            @Valid @RequestBody AddIngredienteRecetaDto dto) {
+
+        Receta receta = service.addIngrediente(recetaId, dto.ingredienteId());
+        return ResponseEntity.status(HttpStatus.CREATED).body(GetRecetaDetailDto.of(receta));
+    }
 }
 
 
