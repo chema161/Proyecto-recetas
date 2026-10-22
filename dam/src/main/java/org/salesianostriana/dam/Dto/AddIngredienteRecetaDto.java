@@ -1,9 +1,11 @@
 package org.salesianostriana.dam.Dto;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 public record AddIngredienteRecetaDto(
-        @NotNull(message = "El id del ingrediente es obligatorio")
+        @NotNull(message = "{addIngredienteRecetaDto.ingredienteId.notNull}")
+        @Positive(message = "{addIngredienteRecetaDto.ingredienteId.positive}")
         Long ingredienteId
 ) {
 }

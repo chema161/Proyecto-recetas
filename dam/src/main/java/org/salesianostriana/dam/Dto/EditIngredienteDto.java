@@ -5,8 +5,8 @@ import jakarta.validation.constraints.Size;
 import org.salesianostriana.dam.modelos.Ingrediente;
 
 public record EditIngredienteDto(
-        @NotBlank(message = "El nombre del ingrediente es obligatorio")
-        @Size(max = 100, message = "El nombre no puede superar los 100 caracteres")
+        @NotBlank(message = "{editIngredienteDto.nombre.notBlank}")
+        @Size(max = 100, message = "{editIngredienteDto.nombre.size}")
         String nombre
 ) {
 
