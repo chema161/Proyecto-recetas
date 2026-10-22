@@ -1,25 +1,28 @@
 package org.salesianostriana.dam.Dto;
 
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import org.salesianostriana.dam.Validation.NombreRecetaUnico;
 import org.salesianostriana.dam.modelos.Categoria;
 import org.salesianostriana.dam.modelos.Dificultad;
 import org.salesianostriana.dam.modelos.Receta;
 
 public record EditRecetaDto(
-        @NotBlank(message = "El nombre de la receta es obligatorio")
-        @Size(max = 150, message = "El nombre no puede superar los 150 caracteres")
+        @NotBlank(message = "{editRecetaDto.nombre.notBlank}")
+        @Size(max = 150, message = "{editRecetaDto.nombre.size}")
+        @NombreRecetaUnico
         String nombre,
 
-        @NotNull(message = "El tiempo de preparación es obligatorio")
+        @NotNull(message = "{editRecetaDto.tiempo.notNull}")
         Integer tiempoPreparacionMin,
 
-        @NotNull(message = "La dificultad es obligatoria (FACIL, MEDIA o DIFICIL)")
+        @NotNull(message = "{editRecetaDto.dificultad.notNull}")
         Dificultad dificultad,
 
-        @NotNull(message = "La categoría es obligatoria")
+        @NotNull(message = "{editRecetaDto.categoriaId.notNull}")
+        @Positive(message = "{editRecetaDto.categoriaId.positive}")
         Long categoriaId
 ) {
 
