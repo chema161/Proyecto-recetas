@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5649200-c262-45d2-81a0-48320ba50233" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/AddIngredienteRecetaDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Config/ValidationConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dam/src/main/resources/messages/errors.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/RecetaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/RecetaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Service/RecetaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Service/RecetaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +36,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "HTTP Request.test | ============ INGREDIENTES ============.executor": "Run",
+    "HTTP Request.test | ============ RECETA - INGREDIENTES  ============.executor": "Run",
+    "HTTP Request.test | Añadir el mismo ingrediente otra vez (409).executor": "Run",
+    "HTTP Request.test | Añadir ingrediente a la receta (201).executor": "Run",
     "HTTP Request.test | Borrar categoría (204).executor": "Run",
     "HTTP Request.test | Borrar categoría que tiene recetas (409).executor": "Run",
     "HTTP Request.test | Borrar receta (204).executor": "Run",
@@ -52,6 +54,7 @@
     "HTTP Request.test | Editar con datos inválidos (400).executor": "Run",
     "HTTP Request.test | Editar con tiempo 0 (400, TiempoInvalido).executor": "Run",
     "HTTP Request.test | Editar receta (200).executor": "Run",
+    "HTTP Request.test | Ingrediente inexistente (404).executor": "Run",
     "HTTP Request.test | Listar categorías.executor": "Run",
     "HTTP Request.test | Listar de nuevo, deben salir 2 (200).executor": "Run",
     "HTTP Request.test | Listar recetas (200).executor": "Run",
@@ -63,9 +66,14 @@
     "HTTP Request.test | Obtener categoría por id (200).executor": "Run",
     "HTTP Request.test | Obtener receta inexistente (404).executor": "Run",
     "HTTP Request.test | Obtener receta por id (200).executor": "Run",
+    "HTTP Request.test | Preparación 2: crear receta.executor": "Run",
+    "HTTP Request.test | Preparación 3: crear ingrediente.executor": "Run",
+    "HTTP Request.test | Receta inexistente (404).executor": "Run",
     "HTTP Request.test | Sin cuerpo de nombre (400).executor": "Run",
+    "HTTP Request.test | Sin ingredienteId (400).executor": "Run",
     "HTTP Request.test | Tiempo igual a 0 (400, TiempoInvalido).executor": "Run",
     "HTTP Request.test | Tiempo negativo (400, TiempoInvalido).executor": "Run",
+    "HTTP Request.test | Ver la receta con sus ingredientes (200, debe salir 1 ingrediente).executor": "Run",
     "HTTP Request.test | crearCategoria.executor": "Run",
     "HTTP Request.test | crearReceta.executor": "Run",
     "Maven.dam [spring-boot:run].executor": "Run",
@@ -75,7 +83,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.DamApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "06-receta-ingredientes",
+    "git-widget-placeholder": "07-validacion",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/josem/Downloads/Proyecto-recetas",
     "node.js.detected.package.eslint": "true",
@@ -93,11 +101,11 @@
         <entry key="HttpClient.HttpRequestRunConfigurationType">
           <value>
             <map>
-              <entry key="test | Crear otro ingrediente (201)" value="STOPPED" />
-              <entry key="test | Listar de nuevo, deben salir 2 (200)" value="STOPPED" />
-              <entry key="test | Nombre duplicado (409)#2" value="STOPPED" />
-              <entry key="test | Nombre vacío (400)" value="STOPPED" />
-              <entry key="test | Sin cuerpo de nombre (400)" value="STOPPED" />
+              <entry key="test | Añadir el mismo ingrediente otra vez (409)" value="STOPPED" />
+              <entry key="test | Ingrediente inexistente (404)" value="STOPPED" />
+              <entry key="test | Receta inexistente (404)" value="STOPPED" />
+              <entry key="test | Sin ingredienteId (400)" value="STOPPED" />
+              <entry key="test | Ver la receta con sus ingredientes (200, debe salir 1 ingrediente)" value="STOPPED" />
             </map>
           </value>
         </entry>
