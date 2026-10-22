@@ -65,7 +65,7 @@ Content-Type: application/json
 ### Borrar categoría (204)
 DELETE {{host}}/1
 
-### ============ RECETAS ============
+### RECETAS
 
 ### Crear categoría base (201)
 # @name crearCategoria
@@ -193,7 +193,7 @@ DELETE http://localhost:8080/api/v1/categorias/{{categoriaId}}
 ### Borrar receta (204)
 DELETE http://localhost:8080/api/v1/recetas/{{recetaId}}
 
-### ============ INGREDIENTES ============
+### INGREDIENTES
 
 ### Listar ingredientes (200)
 GET http://localhost:8080/api/v1/ingredientes
@@ -239,7 +239,7 @@ Content-Type: application/json
 ### Listar de nuevo, deben salir 2 (200)
 GET http://localhost:8080/api/v1/ingredientes
 
-### ============ RECETA - INGREDIENTES  ============
+### RECETA-INGREDIENTES
 
 ### Preparación 1: crear categoría
 POST http://localhost:8080/api/v1/categorias
@@ -315,3 +315,89 @@ Content-Type: application/json
 
 ### Ver la receta con sus ingredientes (200, debe salir 1 ingrediente)
 GET http://localhost:8080/api/v1/recetas/{{mmRecetaId}}
+
+### VALIDACIÓN PERSONALIZADA (@NombreRecetaUnico)
+
+### Preparación 1: crear categoría
+POST http://localhost:8080/api/v1/categorias
+Content-Type: application/json
+
+{
+  "nombre": "Tartas {{$uuid}}",
+  "descripcion": "Tartas y pasteles"
+}
+
+> {% client.global.set("vCategoriaId", response.body.id); %}
+
+### Preparación 2: crear receta A (201)
+POST http://localhost:8080/api/v1/recetas
+Content-Type: application/json
+
+{
+  "nombre": "Tarta de queso {{$uuid}}",
+  "tiempoPreparacionMin": 60,
+  "dificultad": "MEDIA",
+  "categoriaId": {{vCategoriaId}}
+}
+
+> {%
+    client.global.set("vRecetaAId", response.body.id);
+    client.global.set("vRecetaANombre", response.body.nombre);
+%}
+
+### Crear receta con el nombre de A (400, mensaje de nombre duplicado)
+POST http://localhost:8080/api/v1/recetas
+Content-Type: application/json
+
+{
+  "nombre": "{{vRecetaANombre}}",
+  "tiempoPreparacionMin": 30,
+  "dificultad": "FACIL",
+  "categoriaId": {{vCategoriaId}}
+}
+
+### Editar A manteniendo su propio nombre (200, no es duplicado)
+PUT http://localhost:8080/api/v1/recetas/{{vRecetaAId}}
+Content-Type: application/json
+
+{
+  "nombre": "{{vRecetaANombre}}",
+  "tiempoPreparacionMin": 75,
+  "dificultad": "DIFICIL",
+  "categoriaId": {{vCategoriaId}}
+}
+
+### Preparación 3: crear receta B (201)
+POST http://localhost:8080/api/v1/recetas
+Content-Type: application/json
+
+{
+  "nombre": "Brownie {{$uuid}}",
+  "tiempoPreparacionMin": 40,
+  "dificultad": "FACIL",
+  "categoriaId": {{vCategoriaId}}
+}
+
+> {% client.global.set("vRecetaBId", response.body.id); %}
+
+### Editar B con el nombre de A (400, nombre duplicado)
+PUT http://localhost:8080/api/v1/recetas/{{vRecetaBId}}
+Content-Type: application/json
+
+{
+  "nombre": "{{vRecetaANombre}}",
+  "tiempoPreparacionMin": 40,
+  "dificultad": "FACIL",
+  "categoriaId": {{vCategoriaId}}
+}
+
+### Id de categoría negativo (400, @Positive)
+POST http://localhost:8080/api/v1/recetas
+Content-Type: application/json
+
+{
+  "nombre": "Receta categoría negativa",
+  "tiempoPreparacionMin": 30,
+  "dificultad": "FACIL",
+  "categoriaId": -1
+}

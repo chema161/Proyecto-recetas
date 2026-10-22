@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5649200-c262-45d2-81a0-48320ba50233" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditCategoriaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditCategoriaDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditRecetaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditRecetaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dam/src/main/resources/test.http" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/resources/test.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,19 +112,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Maven.dam [spring-boot:run]">
-    <configuration name="test | Añadir el mismo ingrediente otra vez (409)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Añadir el mismo ingrediente otra vez (409)" index="37" runType="Run single request">
+    <configuration name="test | Crear receta con el nombre de A (400, mensaje de nombre duplicado)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Crear receta con el nombre de A (400, mensaje de nombre duplicado)" index="44" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test | Ingrediente inexistente (404)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Ingrediente inexistente (404)" index="38" runType="Run single request">
+    <configuration name="test | Editar A manteniendo su propio nombre (200, no es duplicado)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Editar A manteniendo su propio nombre (200, no es duplicado)" index="45" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test | Receta inexistente (404)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Receta inexistente (404)" index="39" runType="Run single request">
+    <configuration name="test | Editar B con el nombre de A (400, nombre duplicado)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Editar B con el nombre de A (400, nombre duplicado)" index="47" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test | Sin ingredienteId (400)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Sin ingredienteId (400)" index="40" runType="Run single request">
+    <configuration name="test | Id de categoría negativo (400, @Positive)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Id de categoría negativo (400, @Positive)" index="48" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test | Ver la receta con sus ingredientes (200, debe salir 1 ingrediente)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Ver la receta con sus ingredientes (200, debe salir 1 ingrediente)" index="41" runType="Run single request">
+    <configuration name="test | Preparación 3: crear receta B (201)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Preparación 3: crear receta B (201)" index="46" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="dam [spring-boot:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
@@ -165,21 +165,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="HTTP Request.test | Añadir el mismo ingrediente otra vez (409)" />
-      <item itemvalue="HTTP Request.test | Ingrediente inexistente (404)" />
-      <item itemvalue="HTTP Request.test | Receta inexistente (404)" />
-      <item itemvalue="HTTP Request.test | Sin ingredienteId (400)" />
-      <item itemvalue="HTTP Request.test | Ver la receta con sus ingredientes (200, debe salir 1 ingrediente)" />
+      <item itemvalue="HTTP Request.test | Crear receta con el nombre de A (400, mensaje de nombre duplicado)" />
+      <item itemvalue="HTTP Request.test | Editar A manteniendo su propio nombre (200, no es duplicado)" />
+      <item itemvalue="HTTP Request.test | Editar B con el nombre de A (400, nombre duplicado)" />
+      <item itemvalue="HTTP Request.test | Id de categoría negativo (400, @Positive)" />
+      <item itemvalue="HTTP Request.test | Preparación 3: crear receta B (201)" />
       <item itemvalue="Maven.dam [spring-boot:run]" />
       <item itemvalue="Spring Boot.DamApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.test | Ver la receta con sus ingredientes (200, debe salir 1 ingrediente)" />
-        <item itemvalue="HTTP Request.test | Sin ingredienteId (400)" />
-        <item itemvalue="HTTP Request.test | Receta inexistente (404)" />
-        <item itemvalue="HTTP Request.test | Ingrediente inexistente (404)" />
-        <item itemvalue="HTTP Request.test | Añadir el mismo ingrediente otra vez (409)" />
+        <item itemvalue="HTTP Request.test | Id de categoría negativo (400, @Positive)" />
+        <item itemvalue="HTTP Request.test | Editar B con el nombre de A (400, nombre duplicado)" />
+        <item itemvalue="HTTP Request.test | Preparación 3: crear receta B (201)" />
+        <item itemvalue="HTTP Request.test | Editar A manteniendo su propio nombre (200, no es duplicado)" />
+        <item itemvalue="HTTP Request.test | Crear receta con el nombre de A (400, mensaje de nombre duplicado)" />
       </list>
     </recent_temporary>
   </component>
