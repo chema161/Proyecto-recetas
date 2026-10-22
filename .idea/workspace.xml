@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5649200-c262-45d2-81a0-48320ba50233" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/IngredienteController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditIngredienteDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Service/IngredienteService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dam/db/basedatos.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/dam/db/basedatos.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/modelos/Dificultad.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/modelos/Dificultad.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dam/src/main/resources/test.http" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/resources/test.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +38,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "HTTP Request.test | ============ INGREDIENTES ============.executor": "Run",
     "HTTP Request.test | Borrar categoría (204).executor": "Run",
     "HTTP Request.test | Borrar categoría que tiene recetas (409).executor": "Run",
     "HTTP Request.test | Borrar receta (204).executor": "Run",
@@ -43,6 +46,8 @@
     "HTTP Request.test | Crear categoría (201).executor": "Run",
     "HTTP Request.test | Crear categoría con nombre duplicado (409).executor": "Run",
     "HTTP Request.test | Crear categoría con nombre vacío (400).executor": "Run",
+    "HTTP Request.test | Crear ingrediente (201).executor": "Run",
+    "HTTP Request.test | Crear otro ingrediente (201).executor": "Run",
     "HTTP Request.test | Dificultad inválida (400).executor": "Run",
     "HTTP Request.test | Editar categoría (200).executor": "Run",
     "HTTP Request.test | Editar categoría inexistente (404).executor": "Run",
@@ -50,13 +55,17 @@
     "HTTP Request.test | Editar con tiempo 0 (400, TiempoInvalido).executor": "Run",
     "HTTP Request.test | Editar receta (200).executor": "Run",
     "HTTP Request.test | Listar categorías.executor": "Run",
+    "HTTP Request.test | Listar de nuevo, deben salir 2 (200).executor": "Run",
     "HTTP Request.test | Listar recetas (200).executor": "Run",
+    "HTTP Request.test | Nombre duplicado (409)#2.executor": "Run",
     "HTTP Request.test | Nombre duplicado (409).executor": "Run",
+    "HTTP Request.test | Nombre vacío (400).executor": "Run",
     "HTTP Request.test | Nombre vacío y sin dificultad (400, validación).executor": "Run",
     "HTTP Request.test | Obtener categoría inexistente (404).executor": "Run",
     "HTTP Request.test | Obtener categoría por id (200).executor": "Run",
     "HTTP Request.test | Obtener receta inexistente (404).executor": "Run",
     "HTTP Request.test | Obtener receta por id (200).executor": "Run",
+    "HTTP Request.test | Sin cuerpo de nombre (400).executor": "Run",
     "HTTP Request.test | Tiempo igual a 0 (400, TiempoInvalido).executor": "Run",
     "HTTP Request.test | Tiempo negativo (400, TiempoInvalido).executor": "Run",
     "HTTP Request.test | crearCategoria.executor": "Run",
@@ -68,7 +77,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.DamApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "04-receta",
+    "git-widget-placeholder": "05-ingrediente",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/josem/Downloads/Proyecto-recetas",
     "node.js.detected.package.eslint": "true",
@@ -86,11 +95,11 @@
         <entry key="HttpClient.HttpRequestRunConfigurationType">
           <value>
             <map>
-              <entry key="test | Borrar categoría que tiene recetas (409)" value="STOPPED" />
-              <entry key="test | Borrar receta (204)" value="STOPPED" />
-              <entry key="test | Dificultad inválida (400)" value="STOPPED" />
-              <entry key="test | Editar con tiempo 0 (400, TiempoInvalido)" value="STOPPED" />
-              <entry key="test | Nombre duplicado (409)" value="STOPPED" />
+              <entry key="test | Crear otro ingrediente (201)" value="STOPPED" />
+              <entry key="test | Listar de nuevo, deben salir 2 (200)" value="STOPPED" />
+              <entry key="test | Nombre duplicado (409)#2" value="STOPPED" />
+              <entry key="test | Nombre vacío (400)" value="STOPPED" />
+              <entry key="test | Sin cuerpo de nombre (400)" value="STOPPED" />
             </map>
           </value>
         </entry>
@@ -98,19 +107,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Maven.dam [spring-boot:run]">
-    <configuration name="test | Borrar categoría que tiene recetas (409)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Borrar categoría que tiene recetas (409)" index="24" runType="Run single request">
+    <configuration name="test | Crear otro ingrediente (201)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Crear otro ingrediente (201)" index="28" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test | Borrar receta (204)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Borrar receta (204)" index="25" runType="Run single request">
+    <configuration name="test | Listar de nuevo, deben salir 2 (200)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Listar de nuevo, deben salir 2 (200)" index="32" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test | Dificultad inválida (400)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Dificultad inválida (400)" index="18" runType="Run single request">
+    <configuration name="test | Nombre duplicado (409)#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Nombre duplicado (409)#2" index="31" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test | Editar con tiempo 0 (400, TiempoInvalido)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Editar con tiempo 0 (400, TiempoInvalido)" index="23" runType="Run single request">
+    <configuration name="test | Nombre vacío (400)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Nombre vacío (400)" index="29" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test | Nombre duplicado (409)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Nombre duplicado (409)" index="19" runType="Run single request">
+    <configuration name="test | Sin cuerpo de nombre (400)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Sin cuerpo de nombre (400)" index="30" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="dam [spring-boot:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
@@ -151,21 +160,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="HTTP Request.test | Borrar categoría que tiene recetas (409)" />
-      <item itemvalue="HTTP Request.test | Borrar receta (204)" />
-      <item itemvalue="HTTP Request.test | Dificultad inválida (400)" />
-      <item itemvalue="HTTP Request.test | Editar con tiempo 0 (400, TiempoInvalido)" />
-      <item itemvalue="HTTP Request.test | Nombre duplicado (409)" />
+      <item itemvalue="HTTP Request.test | Crear otro ingrediente (201)" />
+      <item itemvalue="HTTP Request.test | Listar de nuevo, deben salir 2 (200)" />
+      <item itemvalue="HTTP Request.test | Nombre duplicado (409)#2" />
+      <item itemvalue="HTTP Request.test | Nombre vacío (400)" />
+      <item itemvalue="HTTP Request.test | Sin cuerpo de nombre (400)" />
       <item itemvalue="Maven.dam [spring-boot:run]" />
       <item itemvalue="Spring Boot.DamApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.test | Nombre duplicado (409)" />
-        <item itemvalue="HTTP Request.test | Dificultad inválida (400)" />
-        <item itemvalue="HTTP Request.test | Borrar receta (204)" />
-        <item itemvalue="HTTP Request.test | Borrar categoría que tiene recetas (409)" />
-        <item itemvalue="HTTP Request.test | Editar con tiempo 0 (400, TiempoInvalido)" />
+        <item itemvalue="HTTP Request.test | Listar de nuevo, deben salir 2 (200)" />
+        <item itemvalue="HTTP Request.test | Nombre duplicado (409)#2" />
+        <item itemvalue="HTTP Request.test | Sin cuerpo de nombre (400)" />
+        <item itemvalue="HTTP Request.test | Nombre vacío (400)" />
+        <item itemvalue="HTTP Request.test | Crear otro ingrediente (201)" />
       </list>
     </recent_temporary>
   </component>
