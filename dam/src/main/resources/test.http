@@ -64,3 +64,131 @@ Content-Type: application/json
 
 ### Borrar categoría (204)
 DELETE {{host}}/1
+
+### ============ RECETAS ============
+
+### Crear categoría base (201)
+# @name crearCategoria
+POST http://localhost:8080/api/v1/categorias
+Content-Type: application/json
+
+{
+  "nombre": "Platos principales {{$uuid}}",
+  "descripcion": "Comidas fuertes"
+}
+> {% client.global.set("categoriaId", response.body.id); %}
+
+### Listar recetas (200)
+GET http://localhost:8080/api/v1/recetas
+
+### Crear receta (201)
+# @name crearReceta
+POST http://localhost:8080/api/v1/recetas
+Content-Type: application/json
+
+{
+  "nombre": "Paella valenciana {{$uuid}}",
+  "tiempoPreparacionMin": 90,
+  "dificultad": "MEDIA",
+  "categoriaId": {{categoriaId}}
+}
+> {% client.global.set("recetaId", response.body.id); %}
+
+### Tiempo igual a 0 (400, TiempoInvalido)
+POST http://localhost:8080/api/v1/recetas
+Content-Type: application/json
+
+{
+  "nombre": "Receta tiempo cero",
+  "tiempoPreparacionMin": 0,
+  "dificultad": "FACIL",
+  "categoriaId": {{categoriaId}}
+}
+
+### Tiempo negativo (400, TiempoInvalido)
+POST http://localhost:8080/api/v1/recetas
+Content-Type: application/json
+
+{
+  "nombre": "Receta tiempo negativo",
+  "tiempoPreparacionMin": -5,
+  "dificultad": "FACIL",
+  "categoriaId": {{categoriaId}}
+}
+
+### Categoría inexistente (404)
+POST http://localhost:8080/api/v1/recetas
+Content-Type: application/json
+
+{
+  "nombre": "Receta huérfana",
+  "tiempoPreparacionMin": 30,
+  "dificultad": "FACIL",
+  "categoriaId": 999
+}
+
+### Nombre vacío y sin dificultad (400, validación)
+POST http://localhost:8080/api/v1/recetas
+Content-Type: application/json
+
+{
+  "nombre": "",
+  "tiempoPreparacionMin": 30,
+  "categoriaId": {{categoriaId}}
+}
+
+### Dificultad inválida (400)
+POST http://localhost:8080/api/v1/recetas
+Content-Type: application/json
+
+{
+  "nombre": "Receta imposible",
+  "tiempoPreparacionMin": 30,
+  "dificultad": "IMPOSIBLE",
+  "categoriaId": {{categoriaId}}
+}
+
+### Nombre duplicado (409)
+POST http://localhost:8080/api/v1/recetas
+Content-Type: application/json
+
+{
+  "nombre": "{{recetaId}}",
+  "tiempoPreparacionMin": 60,
+  "dificultad": "FACIL",
+  "categoriaId": {{categoriaId}}
+}
+
+### Obtener receta por id (200)
+GET http://localhost:8080/api/v1/recetas/{{recetaId}}
+
+### Obtener receta inexistente (404)
+GET http://localhost:8080/api/v1/recetas/999
+
+### Editar receta (200)
+PUT http://localhost:8080/api/v1/recetas/{{recetaId}}
+Content-Type: application/json
+
+{
+  "nombre": "Paella de marisco",
+  "tiempoPreparacionMin": 100,
+  "dificultad": "DIFICIL",
+  "categoriaId": {{categoriaId}}
+}
+
+### Editar con tiempo 0 (400, TiempoInvalido)
+PUT http://localhost:8080/api/v1/recetas/{{recetaId}}
+Content-Type: application/json
+
+{
+  "nombre": "Paella de marisco",
+  "tiempoPreparacionMin": 0,
+  "dificultad": "DIFICIL",
+  "categoriaId": {{categoriaId}}
+}
+
+### Borrar categoría que tiene recetas (409)
+DELETE http://localhost:8080/api/v1/categorias/{{categoriaId}}
+
+### Borrar receta (204)
+DELETE http://localhost:8080/api/v1/recetas/{{recetaId}}

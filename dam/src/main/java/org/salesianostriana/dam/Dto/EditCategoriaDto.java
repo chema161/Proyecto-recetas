@@ -1,4 +1,4 @@
-package org.salesianostriana.dam.DTO;
+package org.salesianostriana.dam.Dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
