@@ -1,6 +1,6 @@
 package modelos;
 
-public enum DificultadEnum {
+public enum Dificultad {
 
     Facil,
     Media,

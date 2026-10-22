@@ -1,13 +1,14 @@
 package modelos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -15,7 +16,13 @@ import lombok.NoArgsConstructor;
 public class Ingrediente {
 
     @Id
-    long id;
-    String nombre;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @Column(nullable = false, unique = true)
+    private String nombre;
+
+    @ManyToMany(mappedBy = "ingredientes")
+    @Builder.Default
+    private Set<Receta> recetas = new HashSet<>();
 }

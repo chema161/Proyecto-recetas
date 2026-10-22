@@ -1,13 +1,14 @@
 package modelos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -15,9 +16,26 @@ import lombok.NoArgsConstructor;
 public class Categoria {
 
     @Id
-    private Long id1;
-    long id;
-    String nombre;
-    String descripcion;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @Column(nullable = false, unique = true)
+    private String nombre;
+
+    private String descripcion;
+
+    @OneToMany(mappedBy = "categoria")
+    @Builder.Default
+    private List<Receta> recetas = new ArrayList<>();
+
+    // Métodos helper para mantener sincronizados los dos lados de la relación
+    public void addReceta(Receta receta) {
+        recetas.add(receta);
+        receta.setCategoria(this);
+    }
+
+    public void removeReceta(Receta receta) {
+        recetas.remove(receta);
+        receta.setCategoria(null);
+    }
 }
