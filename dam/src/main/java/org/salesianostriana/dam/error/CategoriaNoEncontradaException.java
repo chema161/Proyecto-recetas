@@ -1,4 +1,4 @@
-package error;
+package org.salesianostriana.dam.error;
 
 public class CategoriaNoEncontradaException extends RuntimeException {
 

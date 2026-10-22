@@ -1,0 +1,66 @@
+@host = http://localhost:8080/api/v1/categorias
+
+### Listar categorías
+GET {{host}}
+
+### Crear categoría (201)
+POST {{host}}
+Content-Type: application/json
+
+{
+  "nombre": "Postres",
+  "descripcion": "Dulces y repostería"
+}
+
+### Crear categoría con nombre vacío (400)
+POST {{host}}
+Content-Type: application/json
+
+{
+  "nombre": "",
+  "descripcion": "Sin nombre"
+}
+
+### Crear categoría con nombre duplicado (409)
+POST {{host}}
+Content-Type: application/json
+
+{
+  "nombre": "Postres",
+  "descripcion": "Repetida"
+}
+
+### Obtener categoría por id (200)
+GET {{host}}/1
+
+### Obtener categoría inexistente (404)
+GET {{host}}/999
+
+### Editar categoría (200)
+PUT {{host}}/1
+Content-Type: application/json
+
+{
+  "nombre": "Postres y dulces",
+  "descripcion": "Dulces, tartas y repostería"
+}
+
+### Editar con datos inválidos (400)
+PUT {{host}}/1
+Content-Type: application/json
+
+{
+  "nombre": "   "
+}
+
+### Editar categoría inexistente (404)
+PUT {{host}}/999
+Content-Type: application/json
+
+{
+  "nombre": "Nada",
+  "descripcion": "No existe"
+}
+
+### Borrar categoría (204)
+DELETE {{host}}/1

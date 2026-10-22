@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5649200-c262-45d2-81a0-48320ba50233" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dam/src/main/resources/test.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,22 +33,98 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "HTTP Request.test | Borrar categoría (204).executor": "Run",
+    "HTTP Request.test | Crear categoría (201).executor": "Run",
+    "HTTP Request.test | Crear categoría con nombre duplicado (409).executor": "Run",
+    "HTTP Request.test | Crear categoría con nombre vacío (400).executor": "Run",
+    "HTTP Request.test | Editar categoría (200).executor": "Run",
+    "HTTP Request.test | Editar categoría inexistente (404).executor": "Run",
+    "HTTP Request.test | Editar con datos inválidos (400).executor": "Run",
+    "HTTP Request.test | Listar categorías.executor": "Run",
+    "HTTP Request.test | Obtener categoría inexistente (404).executor": "Run",
+    "HTTP Request.test | Obtener categoría por id (200).executor": "Run",
+    "Maven.dam [spring-boot:run].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.DamApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "02-errores",
+    "git-widget-placeholder": "03-categoria",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/diaz.gajos24_triana/Downloads/Proyecto-recetas",
+    "last_opened_file_path": "C:/Users/josem/Downloads/Proyecto-recetas",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunDashboard">
+    <option name="configurationStatuses">
+      <map>
+        <entry key="HttpClient.HttpRequestRunConfigurationType">
+          <value>
+            <map>
+              <entry key="test | Borrar categoría (204)" value="STOPPED" />
+              <entry key="test | Editar categoría (200)" value="STOPPED" />
+              <entry key="test | Editar categoría inexistente (404)" value="STOPPED" />
+              <entry key="test | Editar con datos inválidos (400)" value="STOPPED" />
+              <entry key="test | Obtener categoría inexistente (404)" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="Maven.dam [spring-boot:run]">
+    <configuration name="test | Borrar categoría (204)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Borrar categoría (204)" index="10" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="test | Editar categoría (200)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Editar categoría (200)" index="7" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="test | Editar categoría inexistente (404)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Editar categoría inexistente (404)" index="9" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="test | Editar con datos inválidos (400)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Editar con datos inválidos (400)" index="8" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="test | Obtener categoría inexistente (404)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Obtener categoría inexistente (404)" index="6" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="dam [spring-boot:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="spring-boot:run" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/dam" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
     <configuration name="DamApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="dam" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.salesianostriana.dam.DamApplication" />
@@ -56,6 +132,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="HTTP Request.test | Borrar categoría (204)" />
+      <item itemvalue="HTTP Request.test | Editar categoría (200)" />
+      <item itemvalue="HTTP Request.test | Editar categoría inexistente (404)" />
+      <item itemvalue="HTTP Request.test | Editar con datos inválidos (400)" />
+      <item itemvalue="HTTP Request.test | Obtener categoría inexistente (404)" />
+      <item itemvalue="Maven.dam [spring-boot:run]" />
+      <item itemvalue="Spring Boot.DamApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP Request.test | Borrar categoría (204)" />
+        <item itemvalue="HTTP Request.test | Editar categoría inexistente (404)" />
+        <item itemvalue="HTTP Request.test | Editar con datos inválidos (400)" />
+        <item itemvalue="HTTP Request.test | Editar categoría (200)" />
+        <item itemvalue="HTTP Request.test | Obtener categoría inexistente (404)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

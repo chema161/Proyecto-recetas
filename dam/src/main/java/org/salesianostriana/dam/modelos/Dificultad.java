@@ -1,4 +1,4 @@
-package modelos;
+package org.salesianostriana.dam.modelos;
 
 public enum Dificultad {
 

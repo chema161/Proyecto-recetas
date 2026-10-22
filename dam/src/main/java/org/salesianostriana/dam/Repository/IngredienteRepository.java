@@ -1,6 +1,6 @@
-package Repository;
+package org.salesianostriana.dam.Repository;
 
-import modelos.Ingrediente;
+import org.salesianostriana.dam.modelos.Ingrediente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IngredienteRepository extends JpaRepository<Ingrediente, Long> {

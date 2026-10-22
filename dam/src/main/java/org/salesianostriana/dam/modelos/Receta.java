@@ -1,4 +1,4 @@
-package modelos;
+package org.salesianostriana.dam.modelos;
 
 import jakarta.persistence.*;
 import lombok.*;
