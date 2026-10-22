@@ -3,11 +3,14 @@ package org.salesianostriana.dam.Service;
 import lombok.RequiredArgsConstructor;
 import org.salesianostriana.dam.Dto.EditRecetaDto;
 import org.salesianostriana.dam.Repository.RecetaRepository;
+import org.salesianostriana.dam.error.IngredienteYaAnadidoException;
 import org.salesianostriana.dam.error.RecetaNoEncontradaException;
 import org.salesianostriana.dam.error.TiempoInvalidoException;
 import org.salesianostriana.dam.modelos.Categoria;
+import org.salesianostriana.dam.modelos.Ingrediente;
 import org.salesianostriana.dam.modelos.Receta;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
@@ -16,6 +19,7 @@ public class RecetaService {
 
     private final RecetaRepository repository;
     private final CategoriaService categoriaService;
+    private final IngredienteService ingredienteService;
 
     /**
      * - Devuelve todas las recetas.
@@ -35,7 +39,7 @@ public class RecetaService {
 
     /**
      * - Valida que el tiempo de preparación sea mayor que 0.
-     * - Comprueba que la categoría existe y lanza 404 si no existe.
+     * - Comprueba que la categoría existe y lanza 404 si no.
      * - Guarda la receta asociada a esa categoría.
      */
     public Receta save(EditRecetaDto dto) {
@@ -68,6 +72,27 @@ public class RecetaService {
      */
     public void delete(Long id) {
         repository.deleteById(id);
+    }
+
+    /**
+     * - Busca la receta y lanza 404 si no existe.
+     * - Busca el ingrediente y lanza 404 si no existe.
+     * - Lanza IngredienteYaAnadidoException si la receta ya lo contiene.
+     * - Asocia el ingrediente a la receta y lo guarda.
+     */
+    @Transactional
+    public Receta addIngrediente(Long recetaId, Long ingredienteId) {
+        Receta receta = findById(recetaId);
+        Ingrediente ingrediente = ingredienteService.findById(ingredienteId);
+
+        boolean yaAnadido = receta.getIngredientes().stream()
+                .anyMatch(i -> i.getId().equals(ingredienteId));
+        if (yaAnadido) {
+            throw new IngredienteYaAnadidoException(recetaId, ingredienteId);
+        }
+
+        receta.addIngrediente(ingrediente);
+        return repository.save(receta);
     }
 
     private void validarTiempo(Integer tiempo) {

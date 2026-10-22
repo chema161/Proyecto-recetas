@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5649200-c262-45d2-81a0-48320ba50233" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/IngredienteController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditIngredienteDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Service/IngredienteService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/AddIngredienteRecetaDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/db/basedatos.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/dam/db/basedatos.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/resources/test.http" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/resources/test.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/RecetaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/RecetaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Service/RecetaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Service/RecetaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +75,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.DamApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "05-ingrediente",
+    "git-widget-placeholder": "06-receta-ingredientes",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/josem/Downloads/Proyecto-recetas",
     "node.js.detected.package.eslint": "true",
@@ -107,19 +105,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Maven.dam [spring-boot:run]">
-    <configuration name="test | Crear otro ingrediente (201)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Crear otro ingrediente (201)" index="28" runType="Run single request">
+    <configuration name="test | Añadir el mismo ingrediente otra vez (409)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Añadir el mismo ingrediente otra vez (409)" index="37" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test | Listar de nuevo, deben salir 2 (200)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Listar de nuevo, deben salir 2 (200)" index="32" runType="Run single request">
+    <configuration name="test | Ingrediente inexistente (404)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Ingrediente inexistente (404)" index="38" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test | Nombre duplicado (409)#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Nombre duplicado (409)#2" index="31" runType="Run single request">
+    <configuration name="test | Receta inexistente (404)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Receta inexistente (404)" index="39" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test | Nombre vacío (400)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Nombre vacío (400)" index="29" runType="Run single request">
+    <configuration name="test | Sin ingredienteId (400)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Sin ingredienteId (400)" index="40" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="test | Sin cuerpo de nombre (400)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Sin cuerpo de nombre (400)" index="30" runType="Run single request">
+    <configuration name="test | Ver la receta con sus ingredientes (200, debe salir 1 ingrediente)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Ver la receta con sus ingredientes (200, debe salir 1 ingrediente)" index="41" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="dam [spring-boot:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
@@ -160,21 +158,21 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="HTTP Request.test | Crear otro ingrediente (201)" />
-      <item itemvalue="HTTP Request.test | Listar de nuevo, deben salir 2 (200)" />
-      <item itemvalue="HTTP Request.test | Nombre duplicado (409)#2" />
-      <item itemvalue="HTTP Request.test | Nombre vacío (400)" />
-      <item itemvalue="HTTP Request.test | Sin cuerpo de nombre (400)" />
+      <item itemvalue="HTTP Request.test | Añadir el mismo ingrediente otra vez (409)" />
+      <item itemvalue="HTTP Request.test | Ingrediente inexistente (404)" />
+      <item itemvalue="HTTP Request.test | Receta inexistente (404)" />
+      <item itemvalue="HTTP Request.test | Sin ingredienteId (400)" />
+      <item itemvalue="HTTP Request.test | Ver la receta con sus ingredientes (200, debe salir 1 ingrediente)" />
       <item itemvalue="Maven.dam [spring-boot:run]" />
       <item itemvalue="Spring Boot.DamApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.test | Listar de nuevo, deben salir 2 (200)" />
-        <item itemvalue="HTTP Request.test | Nombre duplicado (409)#2" />
-        <item itemvalue="HTTP Request.test | Sin cuerpo de nombre (400)" />
-        <item itemvalue="HTTP Request.test | Nombre vacío (400)" />
-        <item itemvalue="HTTP Request.test | Crear otro ingrediente (201)" />
+        <item itemvalue="HTTP Request.test | Ver la receta con sus ingredientes (200, debe salir 1 ingrediente)" />
+        <item itemvalue="HTTP Request.test | Sin ingredienteId (400)" />
+        <item itemvalue="HTTP Request.test | Receta inexistente (404)" />
+        <item itemvalue="HTTP Request.test | Ingrediente inexistente (404)" />
+        <item itemvalue="HTTP Request.test | Añadir el mismo ingrediente otra vez (409)" />
       </list>
     </recent_temporary>
   </component>
