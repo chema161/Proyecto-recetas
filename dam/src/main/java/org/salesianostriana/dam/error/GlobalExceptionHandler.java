@@ -1,4 +1,4 @@
-package error;
+package org.salesianostriana.dam.error;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
@@ -14,13 +14,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.net.URI;
 import java.util.List;
-
+import org.springframework.dao.DataIntegrityViolationException;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     private static final String BASE_TYPE = "https://recetas.example.com/errors/";
 
-    // 404 - Recurso no encontrado (categoría, receta o ingrediente)
+    // 404 - Recurso no encontrado
     @ExceptionHandler({
             CategoriaNoEncontradaException.class,
             RecetaNoEncontradaException.class,
@@ -31,7 +31,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 "Recurso no encontrado", ex.getMessage(), "recurso-no-encontrado");
     }
 
-    // 409 - El ingrediente ya está en la receta (conflicto con el estado actual)
+    // 409 - El ingrediente ya está en la receta
     @ExceptionHandler(IngredienteYaAnadidoException.class)
     public ProblemDetail handleIngredienteYaAnadido(IngredienteYaAnadidoException ex) {
         return crearProblema(HttpStatus.CONFLICT,
@@ -43,6 +43,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ProblemDetail handleTiempoInvalido(TiempoInvalidoException ex) {
         return crearProblema(HttpStatus.BAD_REQUEST,
                 "Tiempo de preparación inválido", ex.getMessage(), "tiempo-invalido");
+    }
+
+    // 409 - Violación de integridad (nombre duplicado, borrar algo que está en uso, etc)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ProblemDetail handleIntegridad(DataIntegrityViolationException ex) {
+        return crearProblema(HttpStatus.CONFLICT,
+                "Conflicto de integridad de datos",
+                "La operación viola una restricción de datos: nombre duplicado o recurso en uso",
+                "conflicto-integridad");
     }
 
     // 500 - Cualquier error no controlado
