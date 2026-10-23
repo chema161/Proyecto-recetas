@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d5649200-c262-45d2-81a0-48320ba50233" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/resources/test.http" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/resources/test.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dam/db/basedatos.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/dam/db/basedatos.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/AddIngredienteRecetaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/AddIngredienteRecetaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditCategoriaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditCategoriaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditIngredienteDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditIngredienteDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditRecetaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditRecetaDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +86,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.DamApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "07-validacion",
+    "git-widget-placeholder": "08-openapi",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/josem/Downloads/Proyecto-recetas",
     "node.js.detected.package.eslint": "true",
@@ -94,23 +98,6 @@
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
-  <component name="RunDashboard">
-    <option name="configurationStatuses">
-      <map>
-        <entry key="HttpClient.HttpRequestRunConfigurationType">
-          <value>
-            <map>
-              <entry key="test | Añadir el mismo ingrediente otra vez (409)" value="STOPPED" />
-              <entry key="test | Ingrediente inexistente (404)" value="STOPPED" />
-              <entry key="test | Receta inexistente (404)" value="STOPPED" />
-              <entry key="test | Sin ingredienteId (400)" value="STOPPED" />
-              <entry key="test | Ver la receta con sus ingredientes (200, debe salir 1 ingrediente)" value="STOPPED" />
-            </map>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="RunManager" selected="Maven.dam [spring-boot:run]">
     <configuration name="test | Crear receta con el nombre de A (400, mensaje de nombre duplicado)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Crear receta con el nombre de A (400, mensaje de nombre duplicado)" index="44" runType="Run single request">
       <method v="2" />
