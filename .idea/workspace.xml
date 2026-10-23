@@ -5,6 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5649200-c262-45d2-81a0-48320ba50233" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/dam/src/main/java/error/CategoriaNoEncontradaException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dam/src/main/java/error/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dam/src/main/java/error/IngredienteNoEncontradaException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dam/src/main/java/error/IngredienteYaAnadidoException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dam/src/main/java/error/RecetaNoEncontradaException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dam/src/main/java/error/TiempoInvalidoException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
