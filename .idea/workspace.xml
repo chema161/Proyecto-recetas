@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5649200-c262-45d2-81a0-48320ba50233" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Config/OpenApiConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/CategoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/CategoriaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/IngredienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/IngredienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/RecetaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Controller/RecetaController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
