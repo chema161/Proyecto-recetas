@@ -1,19 +1,112 @@
-@host = http://localhost:8080/api/v1/categorias
+# API de gestión recetas - Pruebas manuales
+#
+# Cómo se utiliza:
+#   1. Arranca la aplicación en el puerto 8080.
+#   2. Abre este archivo en IntelliJ IDEA.
+#   3. Pulsa "Run all requests in file", o ejecuta las peticiones una a una
+#      de arriba abajo: las primeras guardan ids en variables que usan las demás.
+#
+# Convenciones
+#   - Cada petición indica el código HTTP esperado en su título.
+#   - Los nombres llevan {{$uuid}} para poder repetir las pruebas sin reiniciar.
+#   - Los errores se devuelven como ProblemDetail (RFC 7807).
+#
+# Índice
+#   0. Preparación/datos base
+#   1. Categorías
+#   2. Ingredientes
+#   3. Recetas
+#   4. Ingredientes de una receta
+#   5. Borrados
 
-### Listar categorías
-GET {{host}}
+@host = http://localhost:8080/api/v1
 
-### Crear categoría (201)
-POST {{host}}
+# 0. Preparación: crea una categoría, un ingrediente y una receta base
+
+### 0.1 Crear categoría base (201)
+POST {{host}}/categorias
 Content-Type: application/json
 
 {
-  "nombre": "Postres",
-  "descripcion": "Dulces y repostería"
+  "nombre": "Platos principales {{$uuid}}",
+  "descripcion": "Comidas fuertes"
 }
 
-### Crear categoría con nombre vacío (400)
-POST {{host}}
+> {%
+    client.test("201 Created", function () {
+        client.assert(response.status === 201, "Esperado 201, recibido " + response.status);
+    });
+    client.global.set("catId", response.body.id);
+    client.global.set("catNombre", response.body.nombre);
+%}
+
+### 0.2 Crear ingrediente base (201)
+POST {{host}}/ingredientes
+Content-Type: application/json
+
+{
+  "nombre": "Arroz bomba {{$uuid}}"
+}
+
+> {%
+    client.test("201 Created", function () {
+        client.assert(response.status === 201, "Esperado 201, recibido " + response.status);
+    });
+    client.global.set("ingId", response.body.id);
+    client.global.set("ingNombre", response.body.nombre);
+%}
+
+### 0.3 Crear receta base (201)
+POST {{host}}/recetas
+Content-Type: application/json
+
+{
+  "nombre": "Paella valenciana {{$uuid}}",
+  "tiempoPreparacionMin": 90,
+  "dificultad": "MEDIA",
+  "categoriaId": {{catId}}
+}
+
+> {%
+    client.test("201 Created", function () {
+        client.assert(response.status === 201, "Esperado 201, recibido " + response.status);
+    });
+    client.global.set("recId", response.body.id);
+    client.global.set("recNombre", response.body.nombre);
+%}
+
+###############################################################################
+# 1. CATEGORÍAS  (/api/v1/categorias)
+
+### 1.1 Listar categorías (200)
+GET {{host}}/categorias
+
+> {%
+    client.test("200 OK", function () {
+        client.assert(response.status === 200, "Esperado 200, recibido " + response.status);
+    });
+%}
+
+### 1.2 Obtener categoría por id (200)
+GET {{host}}/categorias/{{catId}}
+
+> {%
+    client.test("200 OK", function () {
+        client.assert(response.status === 200, "Esperado 200, recibido " + response.status);
+    });
+%}
+
+### 1.3 Obtener categoría inexistente (404 CategoriaNoEncontradaException)
+GET {{host}}/categorias/999999
+
+> {%
+    client.test("404 Not Found", function () {
+        client.assert(response.status === 404, "Esperado 404, recibido " + response.status);
+    });
+%}
+
+### 1.4 Crear categoría con nombre vacío (400 validación, invalid-params)
+POST {{host}}/categorias
 Content-Type: application/json
 
 {
@@ -21,383 +114,482 @@ Content-Type: application/json
   "descripcion": "Sin nombre"
 }
 
-### Crear categoría con nombre duplicado (409)
-POST {{host}}
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
+
+### 1.5 Crear categoría con nombre duplicado (409 conflicto de integridad)
+POST {{host}}/categorias
 Content-Type: application/json
 
 {
-  "nombre": "Postres",
+  "nombre": "{{catNombre}}",
   "descripcion": "Repetida"
 }
 
-### Obtener categoría por id (200)
-GET {{host}}/1
+> {%
+    client.test("409 Conflict", function () {
+        client.assert(response.status === 409, "Esperado 409, recibido " + response.status);
+    });
+%}
 
-### Obtener categoría inexistente (404)
-GET {{host}}/999
-
-### Editar categoría (200)
-PUT {{host}}/1
+### 1.6 Editar categoría (200)
+PUT {{host}}/categorias/{{catId}}
 Content-Type: application/json
 
 {
-  "nombre": "Postres y dulces",
-  "descripcion": "Dulces, tartas y repostería"
+  "nombre": "{{catNombre}}",
+  "descripcion": "Descripción actualizada"
 }
 
-### Editar con datos inválidos (400)
-PUT {{host}}/1
+> {%
+    client.test("200 OK", function () {
+        client.assert(response.status === 200, "Esperado 200, recibido " + response.status);
+    });
+%}
+
+### 1.7 Editar categoría con datos inválidos (400)
+PUT {{host}}/categorias/{{catId}}
 Content-Type: application/json
 
 {
   "nombre": "   "
 }
 
-### Editar categoría inexistente (404)
-PUT {{host}}/999
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
+
+### 1.8 Editar categoría inexistente (404)
+PUT {{host}}/categorias/999999
 Content-Type: application/json
 
 {
-  "nombre": "Nada",
-  "descripcion": "No existe"
+  "nombre": "No existe {{$uuid}}",
+  "descripcion": "Nada"
 }
 
-### Borrar categoría (204)
-DELETE {{host}}/1
+> {%
+    client.test("404 Not Found", function () {
+        client.assert(response.status === 404, "Esperado 404, recibido " + response.status);
+    });
+%}
 
-### RECETAS
+###############################################################################
+# 2. INGREDIENTES  (/api/v1/ingredientes)
 
-### Crear categoría base (201)
-# @name crearCategoria
-POST http://localhost:8080/api/v1/categorias
+### 2.1 Listar ingredientes (200)
+GET {{host}}/ingredientes
+
+> {%
+    client.test("200 OK", function () {
+        client.assert(response.status === 200, "Esperado 200, recibido " + response.status);
+    });
+%}
+
+### 2.2 Crear ingrediente (201)
+POST {{host}}/ingredientes
 Content-Type: application/json
 
 {
-  "nombre": "Platos principales {{$uuid}}",
-  "descripcion": "Comidas fuertes"
-}
-> {% client.global.set("categoriaId", response.body.id); %}
-
-### Listar recetas (200)
-GET http://localhost:8080/api/v1/recetas
-
-### Crear receta (201)
-# @name crearReceta
-POST http://localhost:8080/api/v1/recetas
-Content-Type: application/json
-
-{
-  "nombre": "Paella valenciana {{$uuid}}",
-  "tiempoPreparacionMin": 90,
-  "dificultad": "MEDIA",
-  "categoriaId": {{categoriaId}}
-}
-> {% client.global.set("recetaId", response.body.id); %}
-
-### Tiempo igual a 0 (400, TiempoInvalido)
-POST http://localhost:8080/api/v1/recetas
-Content-Type: application/json
-
-{
-  "nombre": "Receta tiempo cero",
-  "tiempoPreparacionMin": 0,
-  "dificultad": "FACIL",
-  "categoriaId": {{categoriaId}}
+  "nombre": "Azafrán {{$uuid}}"
 }
 
-### Tiempo negativo (400, TiempoInvalido)
-POST http://localhost:8080/api/v1/recetas
-Content-Type: application/json
+> {%
+    client.test("201 Created", function () {
+        client.assert(response.status === 201, "Esperado 201, recibido " + response.status);
+    });
+%}
 
-{
-  "nombre": "Receta tiempo negativo",
-  "tiempoPreparacionMin": -5,
-  "dificultad": "FACIL",
-  "categoriaId": {{categoriaId}}
-}
-
-### Categoría inexistente (404)
-POST http://localhost:8080/api/v1/recetas
-Content-Type: application/json
-
-{
-  "nombre": "Receta huérfana",
-  "tiempoPreparacionMin": 30,
-  "dificultad": "FACIL",
-  "categoriaId": 999
-}
-
-### Nombre vacío y sin dificultad (400, validación)
-POST http://localhost:8080/api/v1/recetas
-Content-Type: application/json
-
-{
-  "nombre": "",
-  "tiempoPreparacionMin": 30,
-  "categoriaId": {{categoriaId}}
-}
-
-### Dificultad inválida (400)
-POST http://localhost:8080/api/v1/recetas
-Content-Type: application/json
-
-{
-  "nombre": "Receta imposible",
-  "tiempoPreparacionMin": 30,
-  "dificultad": "IMPOSIBLE",
-  "categoriaId": {{categoriaId}}
-}
-
-### Nombre duplicado (409)
-POST http://localhost:8080/api/v1/recetas
-Content-Type: application/json
-
-{
-  "nombre": "{{recetaId}}",
-  "tiempoPreparacionMin": 60,
-  "dificultad": "FACIL",
-  "categoriaId": {{categoriaId}}
-}
-
-### Obtener receta por id (200)
-GET http://localhost:8080/api/v1/recetas/{{recetaId}}
-
-### Obtener receta inexistente (404)
-GET http://localhost:8080/api/v1/recetas/999
-
-### Editar receta (200)
-PUT http://localhost:8080/api/v1/recetas/{{recetaId}}
-Content-Type: application/json
-
-{
-  "nombre": "Paella de marisco",
-  "tiempoPreparacionMin": 100,
-  "dificultad": "DIFICIL",
-  "categoriaId": {{categoriaId}}
-}
-
-### Editar con tiempo 0 (400, TiempoInvalido)
-PUT http://localhost:8080/api/v1/recetas/{{recetaId}}
-Content-Type: application/json
-
-{
-  "nombre": "Paella de marisco",
-  "tiempoPreparacionMin": 0,
-  "dificultad": "DIFICIL",
-  "categoriaId": {{categoriaId}}
-}
-
-### Borrar categoría que tiene recetas (409)
-DELETE http://localhost:8080/api/v1/categorias/{{categoriaId}}
-
-### Borrar receta (204)
-DELETE http://localhost:8080/api/v1/recetas/{{recetaId}}
-
-### INGREDIENTES
-
-### Listar ingredientes (200)
-GET http://localhost:8080/api/v1/ingredientes
-
-### Crear ingrediente (201)
-POST http://localhost:8080/api/v1/ingredientes
-Content-Type: application/json
-
-{
-  "nombre": "Arroz bomba"
-}
-
-### Crear otro ingrediente (201)
-POST http://localhost:8080/api/v1/ingredientes
-Content-Type: application/json
-
-{
-  "nombre": "Azafrán"
-}
-
-### Nombre vacío (400)
-POST http://localhost:8080/api/v1/ingredientes
+### 2.3 Crear ingrediente con nombre vacío (400)
+POST {{host}}/ingredientes
 Content-Type: application/json
 
 {
   "nombre": ""
 }
 
-### Sin cuerpo de nombre (400)
-POST http://localhost:8080/api/v1/ingredientes
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
+
+### 2.4 Crear ingrediente sin campo nombre (400)
+POST {{host}}/ingredientes
 Content-Type: application/json
 
 {}
 
-### Nombre duplicado (409)
-POST http://localhost:8080/api/v1/ingredientes
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
+
+### 2.5 Crear ingrediente con nombre duplicado (409)
+POST {{host}}/ingredientes
 Content-Type: application/json
 
 {
-  "nombre": "Arroz bomba"
-}
-
-### Listar de nuevo, deben salir 2 (200)
-GET http://localhost:8080/api/v1/ingredientes
-
-### RECETA-INGREDIENTES
-
-### Preparación 1: crear categoría
-POST http://localhost:8080/api/v1/categorias
-Content-Type: application/json
-
-{
-  "nombre": "Arroces {{$uuid}}",
-  "descripcion": "Platos de arroz"
-}
-
-> {% client.global.set("mmCategoriaId", response.body.id); %}
-
-### Preparación 2: crear receta
-POST http://localhost:8080/api/v1/recetas
-Content-Type: application/json
-
-{
-  "nombre": "Arroz con pollo {{$uuid}}",
-  "tiempoPreparacionMin": 45,
-  "dificultad": "FACIL",
-  "categoriaId": {{mmCategoriaId}}
-}
-
-> {% client.global.set("mmRecetaId", response.body.id); %}
-
-### Preparación 3: crear ingrediente
-POST http://localhost:8080/api/v1/ingredientes
-Content-Type: application/json
-
-{
-  "nombre": "Pollo {{$uuid}}"
-}
-
-> {% client.global.set("mmIngredienteId", response.body.id); %}
-
-### Añadir ingrediente a la receta (201)
-POST http://localhost:8080/api/v1/recetas/{{mmRecetaId}}/ingredientes
-Content-Type: application/json
-
-{
-  "ingredienteId": {{mmIngredienteId}}
-}
-
-### Añadir el mismo ingrediente otra vez (409)
-POST http://localhost:8080/api/v1/recetas/{{mmRecetaId}}/ingredientes
-Content-Type: application/json
-
-{
-  "ingredienteId": {{mmIngredienteId}}
-}
-
-### Ingrediente inexistente (404)
-POST http://localhost:8080/api/v1/recetas/{{mmRecetaId}}/ingredientes
-Content-Type: application/json
-
-{
-  "ingredienteId": 9999
-}
-
-### Receta inexistente (404)
-POST http://localhost:8080/api/v1/recetas/9999/ingredientes
-Content-Type: application/json
-
-{
-  "ingredienteId": {{mmIngredienteId}}
-}
-
-### Sin ingredienteId (400)
-POST http://localhost:8080/api/v1/recetas/{{mmRecetaId}}/ingredientes
-Content-Type: application/json
-
-{}
-
-### Ver la receta con sus ingredientes (200, debe salir 1 ingrediente)
-GET http://localhost:8080/api/v1/recetas/{{mmRecetaId}}
-
-### VALIDACIÓN PERSONALIZADA (@NombreRecetaUnico)
-
-### Preparación 1: crear categoría
-POST http://localhost:8080/api/v1/categorias
-Content-Type: application/json
-
-{
-  "nombre": "Tartas {{$uuid}}",
-  "descripcion": "Tartas y pasteles"
-}
-
-> {% client.global.set("vCategoriaId", response.body.id); %}
-
-### Preparación 2: crear receta A (201)
-POST http://localhost:8080/api/v1/recetas
-Content-Type: application/json
-
-{
-  "nombre": "Tarta de queso {{$uuid}}",
-  "tiempoPreparacionMin": 60,
-  "dificultad": "MEDIA",
-  "categoriaId": {{vCategoriaId}}
+  "nombre": "{{ingNombre}}"
 }
 
 > {%
-    client.global.set("vRecetaAId", response.body.id);
-    client.global.set("vRecetaANombre", response.body.nombre);
+    client.test("409 Conflict", function () {
+        client.assert(response.status === 409, "Esperado 409, recibido " + response.status);
+    });
 %}
 
-### Crear receta con el nombre de A (400, mensaje de nombre duplicado)
-POST http://localhost:8080/api/v1/recetas
+###############################################################################
+# 3. RECETAS  (/api/v1/recetas)
+
+### 3.1 Listar recetas (200)
+GET {{host}}/recetas
+
+> {%
+    client.test("200 OK", function () {
+        client.assert(response.status === 200, "Esperado 200, recibido " + response.status);
+    });
+%}
+
+### 3.2 Obtener receta (detalle con categoría e ingredientes anidados) (200)
+GET {{host}}/recetas/{{recId}}
+
+> {%
+    client.test("200 OK", function () {
+        client.assert(response.status === 200, "Esperado 200, recibido " + response.status);
+    });
+%}
+
+### 3.3 Obtener receta inexistente (404 RecetaNoEncontradaException)
+GET {{host}}/recetas/999999
+
+> {%
+    client.test("404 Not Found", function () {
+        client.assert(response.status === 404, "Esperado 404, recibido " + response.status);
+    });
+%}
+
+### 3.4 Crear receta con tiempo 0 (400 TiempoInvalidoException)
+POST {{host}}/recetas
 Content-Type: application/json
 
 {
-  "nombre": "{{vRecetaANombre}}",
+  "nombre": "Receta tiempo cero {{$uuid}}",
+  "tiempoPreparacionMin": 0,
+  "dificultad": "FACIL",
+  "categoriaId": {{catId}}
+}
+
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
+
+### 3.5 Crear receta con tiempo negativo (400 TiempoInvalidoException)
+POST {{host}}/recetas
+Content-Type: application/json
+
+{
+  "nombre": "Receta tiempo negativo {{$uuid}}",
+  "tiempoPreparacionMin": -5,
+  "dificultad": "FACIL",
+  "categoriaId": {{catId}}
+}
+
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
+
+### 3.6 Crear receta con categoría inexistente (404 CategoriaNoEncontradaException)
+POST {{host}}/recetas
+Content-Type: application/json
+
+{
+  "nombre": "Receta huérfana {{$uuid}}",
   "tiempoPreparacionMin": 30,
   "dificultad": "FACIL",
-  "categoriaId": {{vCategoriaId}}
+  "categoriaId": 999999
 }
 
-### Editar A manteniendo su propio nombre (200, no es duplicado)
-PUT http://localhost:8080/api/v1/recetas/{{vRecetaAId}}
+> {%
+    client.test("404 Not Found", function () {
+        client.assert(response.status === 404, "Esperado 404, recibido " + response.status);
+    });
+%}
+
+### 3.7 Crear receta sin nombre y sin dificultad (400 validación)
+POST {{host}}/recetas
 Content-Type: application/json
 
 {
-  "nombre": "{{vRecetaANombre}}",
-  "tiempoPreparacionMin": 75,
-  "dificultad": "DIFICIL",
-  "categoriaId": {{vCategoriaId}}
+  "nombre": "",
+  "tiempoPreparacionMin": 30,
+  "categoriaId": {{catId}}
 }
 
-### Preparación 3: crear receta B (201)
-POST http://localhost:8080/api/v1/recetas
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
+
+### 3.8 Crear receta con dificultad inválida (400)
+POST {{host}}/recetas
 Content-Type: application/json
 
 {
-  "nombre": "Brownie {{$uuid}}",
-  "tiempoPreparacionMin": 40,
-  "dificultad": "FACIL",
-  "categoriaId": {{vCategoriaId}}
+  "nombre": "Receta imposible {{$uuid}}",
+  "tiempoPreparacionMin": 30,
+  "dificultad": "IMPOSIBLE",
+  "categoriaId": {{catId}}
 }
 
-> {% client.global.set("vRecetaBId", response.body.id); %}
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
 
-### Editar B con el nombre de A (400, nombre duplicado)
-PUT http://localhost:8080/api/v1/recetas/{{vRecetaBId}}
+### 3.9 Crear receta con categoriaId negativo (400 @Positive)
+POST {{host}}/recetas
 Content-Type: application/json
 
 {
-  "nombre": "{{vRecetaANombre}}",
-  "tiempoPreparacionMin": 40,
-  "dificultad": "FACIL",
-  "categoriaId": {{vCategoriaId}}
-}
-
-### Id de categoría negativo (400, @Positive)
-POST http://localhost:8080/api/v1/recetas
-Content-Type: application/json
-
-{
-  "nombre": "Receta categoría negativa",
+  "nombre": "Receta categoría negativa {{$uuid}}",
   "tiempoPreparacionMin": 30,
   "dificultad": "FACIL",
   "categoriaId": -1
 }
+
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
+
+### 3.10 Crear receta con nombre duplicado (400 anotación @NombreRecetaUnico)
+POST {{host}}/recetas
+Content-Type: application/json
+
+{
+  "nombre": "{{recNombre}}",
+  "tiempoPreparacionMin": 60,
+  "dificultad": "FACIL",
+  "categoriaId": {{catId}}
+}
+
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
+
+### 3.11 Editar receta manteniendo su propio nombre (200 (no cuenta como duplicado))
+PUT {{host}}/recetas/{{recId}}
+Content-Type: application/json
+
+{
+  "nombre": "{{recNombre}}",
+  "tiempoPreparacionMin": 100,
+  "dificultad": "DIFICIL",
+  "categoriaId": {{catId}}
+}
+
+> {%
+    client.test("200 OK", function () {
+        client.assert(response.status === 200, "Esperado 200, recibido " + response.status);
+    });
+%}
+
+### 3.12 Editar receta con tiempo 0 (400 TiempoInvalidoException)
+PUT {{host}}/recetas/{{recId}}
+Content-Type: application/json
+
+{
+  "nombre": "{{recNombre}}",
+  "tiempoPreparacionMin": 0,
+  "dificultad": "DIFICIL",
+  "categoriaId": {{catId}}
+}
+
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
+
+### 3.13 Editar receta inexistente (404)
+PUT {{host}}/recetas/999999
+Content-Type: application/json
+
+{
+  "nombre": "No existe {{$uuid}}",
+  "tiempoPreparacionMin": 30,
+  "dificultad": "FACIL",
+  "categoriaId": {{catId}}
+}
+
+> {%
+    client.test("404 Not Found", function () {
+        client.assert(response.status === 404, "Esperado 404, recibido " + response.status);
+    });
+%}
+
+###############################################################################
+# 4. INGREDIENTES DE UNA RECETA - RELACIÓN M:M
+#    (/api/v1/recetas/{recetaId}/ingredientes)
+
+### 4.1 Añadir ingrediente a la receta (201)
+POST {{host}}/recetas/{{recId}}/ingredientes
+Content-Type: application/json
+
+{
+  "ingredienteId": {{ingId}}
+}
+
+> {%
+    client.test("201 Created", function () {
+        client.assert(response.status === 201, "Esperado 201, recibido " + response.status);
+    });
+    client.test("La receta devuelve 1 ingrediente", function () {
+        client.assert(response.body.ingredientes.length === 1, "Ingredientes: " + response.body.ingredientes.length);
+    });
+%}
+
+### 4.2 Añadir el mismo ingrediente otra vez (409 IngredienteYaAnadidoException)
+POST {{host}}/recetas/{{recId}}/ingredientes
+Content-Type: application/json
+
+{
+  "ingredienteId": {{ingId}}
+}
+
+> {%
+    client.test("409 Conflict", function () {
+        client.assert(response.status === 409, "Esperado 409, recibido " + response.status);
+    });
+%}
+
+### 4.3 Añadir un ingrediente inexistente (404 IngredienteNoEncontradaException)
+POST {{host}}/recetas/{{recId}}/ingredientes
+Content-Type: application/json
+
+{
+  "ingredienteId": 999999
+}
+
+> {%
+    client.test("404 Not Found", function () {
+        client.assert(response.status === 404, "Esperado 404, recibido " + response.status);
+    });
+%}
+
+### 4.4 Añadir ingrediente a una receta inexistente (404 RecetaNoEncontradaException)
+POST {{host}}/recetas/999999/ingredientes
+Content-Type: application/json
+
+{
+  "ingredienteId": {{ingId}}
+}
+
+> {%
+    client.test("404 Not Found", function () {
+        client.assert(response.status === 404, "Esperado 404, recibido " + response.status);
+    });
+%}
+
+### 4.5 Añadir ingrediente sin ingredienteId (400 validación)
+POST {{host}}/recetas/{{recId}}/ingredientes
+Content-Type: application/json
+
+{}
+
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
+
+### 4.6 Añadir ingrediente con id negativo (400 @Positive)
+POST {{host}}/recetas/{{recId}}/ingredientes
+Content-Type: application/json
+
+{
+  "ingredienteId": -1
+}
+
+> {%
+    client.test("400 Bad Request", function () {
+        client.assert(response.status === 400, "Esperado 400, recibido " + response.status);
+    });
+%}
+
+### 4.7 Ver la receta con sus ingredientes (200 (debe salir 1 ingrediente)
+GET {{host}}/recetas/{{recId}}
+
+> {%
+    client.test("200 OK", function () {
+        client.assert(response.status === 200, "Esperado 200, recibido " + response.status);
+    });
+    client.test("Contiene 1 ingrediente", function () {
+        client.assert(response.body.ingredientes.length === 1, "Ingredientes: " + response.body.ingredientes.length);
+    });
+%}
+
+###############################################################################
+# 5. BORRADOS (van al final porque eliminan los datos creados arriba)
+
+### 5.1 Borrar categoría que aún tiene recetas (409)
+DELETE {{host}}/categorias/{{catId}}
+
+> {%
+    client.test("409 Conflict", function () {
+        client.assert(response.status === 409, "Esperado 409, recibido " + response.status);
+    });
+%}
+
+### 5.2 Borrar receta (204)
+DELETE {{host}}/recetas/{{recId}}
+
+> {%
+    client.test("204 No Content", function () {
+        client.assert(response.status === 204, "Esperado 204, recibido " + response.status);
+    });
+%}
+
+### 5.3 Borrar la misma receta otra vez (204 (el borrado es idempotente))
+DELETE {{host}}/recetas/{{recId}}
+
+> {%
+    client.test("204 No Content", function () {
+        client.assert(response.status === 204, "Esperado 204, recibido " + response.status);
+    });
+%}
+
+### 5.4 Borrar categoría sin recetas (204)
+DELETE {{host}}/categorias/{{catId}}
+
+> {%
+    client.test("204 No Content", function () {
+        client.assert(response.status === 204, "Esperado 204, recibido " + response.status);
+    });
+%}
+
+### 5.5 Comprobar que la categoría ya no existe (404)
+GET {{host}}/categorias/{{catId}}
+
+> {%
+    client.test("404 Not Found", function () {
+        client.assert(response.status === 404, "Esperado 404, recibido " + response.status);
+    });
+%}
+

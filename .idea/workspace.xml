@@ -7,10 +7,7 @@
     <list default="true" id="d5649200-c262-45d2-81a0-48320ba50233" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dam/db/basedatos.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/dam/db/basedatos.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/AddIngredienteRecetaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/AddIngredienteRecetaDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditCategoriaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditCategoriaDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditIngredienteDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditIngredienteDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditRecetaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/java/org/salesianostriana/dam/Dto/EditRecetaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dam/src/main/resources/test.http" beforeDir="false" afterPath="$PROJECT_DIR$/dam/src/main/resources/test.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +35,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "HTTP Request.All in test.executor": "Run",
     "HTTP Request.test | ============ INGREDIENTES ============.executor": "Run",
     "HTTP Request.test | ============ RECETA - INGREDIENTES  ============.executor": "Run",
     "HTTP Request.test | Añadir el mismo ingrediente otra vez (409).executor": "Run",
@@ -86,7 +84,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.DamApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "08-openapi",
+    "git-widget-placeholder": "09-postman",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/josem/Downloads/Proyecto-recetas",
     "node.js.detected.package.eslint": "true",
@@ -98,8 +96,21 @@
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
-  <component name="RunManager" selected="Maven.dam [spring-boot:run]">
-    <configuration name="test | Crear receta con el nombre de A (400, mensaje de nombre duplicado)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Crear receta con el nombre de A (400, mensaje de nombre duplicado)" index="44" runType="Run single request">
+  <component name="RunDashboard">
+    <option name="configurationStatuses">
+      <map>
+        <entry key="HttpClient.HttpRequestRunConfigurationType">
+          <value>
+            <map>
+              <entry key="All in test" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="HTTP Request.All in test">
+    <configuration name="All in test" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http">
       <method v="2" />
     </configuration>
     <configuration name="test | Editar A manteniendo su propio nombre (200, no es duplicado)" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/dam/src/main/resources/test.http" executionIdentifier="Editar A manteniendo su propio nombre (200, no es duplicado)" index="45" runType="Run single request">
@@ -152,7 +163,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="HTTP Request.test | Crear receta con el nombre de A (400, mensaje de nombre duplicado)" />
+      <item itemvalue="HTTP Request.All in test" />
       <item itemvalue="HTTP Request.test | Editar A manteniendo su propio nombre (200, no es duplicado)" />
       <item itemvalue="HTTP Request.test | Editar B con el nombre de A (400, nombre duplicado)" />
       <item itemvalue="HTTP Request.test | Id de categoría negativo (400, @Positive)" />
@@ -162,11 +173,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.All in test" />
         <item itemvalue="HTTP Request.test | Id de categoría negativo (400, @Positive)" />
         <item itemvalue="HTTP Request.test | Editar B con el nombre de A (400, nombre duplicado)" />
         <item itemvalue="HTTP Request.test | Preparación 3: crear receta B (201)" />
         <item itemvalue="HTTP Request.test | Editar A manteniendo su propio nombre (200, no es duplicado)" />
-        <item itemvalue="HTTP Request.test | Crear receta con el nombre de A (400, mensaje de nombre duplicado)" />
       </list>
     </recent_temporary>
   </component>
